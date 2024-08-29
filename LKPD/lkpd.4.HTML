@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOMOR 4</title>
+    <style>
+        #image-container {
+            margin-top: 20px;
+        }
+        #selected-image {
+            max-width: 100%;
+            height: auto;
+            transition: border 0.3s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <h1></h1>
+    <label for="image-select">Pilih Gambar : </label>
+    <select id="image-select">
+        <option value="1.jpg">Gambar 1</option>
+        <option value="2.jpg">Gambar 2</option>
+        <option value="3.jpg">Gambar 3</option>
+    </select>
+
+    <label for="bentuk-select">Pilih Bentuk:</label>
+    <select id="bentuk-select">
+        <option value="lingkaran">Lingkaran</option>
+        <option value="kotak">Kotak</option>
+        <option value="segitiga">Segitiga</option>
+    </select>
+
+    <label for="border-select">Pilih Border:</label>
+    <select id="border-select">
+        <option value="red">Red</option>
+        <option value="green">Green</option>
+        <option value="yellow">Yellow</option>
+        <option value="brown">Brown</option>
+    </select>
+
+    <button onclick="updateImage()">Input</button>
+
+    <div id="image-container">
+        <img id="selected-image" src="" alt="Gambar Pilihan"/>
+    </div>
+
+    <script>
+        function updateImage() {
+            const imageSelect = document.getElementById('image-select');
+            const borderSelect = document.getElementById('border-select');
+            const bentukSelect = document.getElementById('bentuk-select');
+            const selectedImage = document.getElementById('selected-image');
+
+            const selectedImageSrc = imageSelect.value;
+            const selectedBorder = borderSelect.value;
+            const selectedBentuk = bentukSelect.value;
+
+            selectedImage.src = selectedImageSrc;
+
+            if (selectedBentuk === 'lingkaran') {
+                selectedImage.style.borderRadius = '100%';
+                selectedImage.style.clipPath = "none";
+            } else if (selectedBentuk === 'kotak') {
+                selectedImage.style.borderRadius = '0';
+                selectedImage.style.clipPath = "none";
+            } else if (selectedBentuk === 'segitiga') {
+                selectedImage.style.borderRadius = '0px';
+                selectedImage.style.clipPath = 'polygon(50% 0, 0 100%, 100% 100%)';
+            }
+
+            if (selectedBorder === 'red') {
+                selectedImage.style.border = '2px solid red';
+            } else if (selectedBorder === 'green') {
+                selectedImage.style.border = '2px solid green';
+            } else if (selectedBorder === 'yellow') {
+                selectedImage.style.border = '2px solid yellow';
+            } 
+        }
+    </script>
+
+</body>
+</html>

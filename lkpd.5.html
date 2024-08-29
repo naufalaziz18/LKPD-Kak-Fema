@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hitung Mundur</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #countdown {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+
+        #message {
+            font-size: 24px;
+            color: red;
+            margin-top: 20px;
+        }
+
+        .button-container {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column; 
+            align-items: center;
+            gap: 10px;
+        }
+
+        .button-container button {
+            font-size: 16px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            transition: background-color 0.3s;
+        }
+
+        .button-container button:hover {
+            background-color: #0056b3;
+        }
+        
+        #stopButton {
+            background-color: #dc3545;
+        }
+
+        #stopButton:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Hitung Mundur</h1>
+    <div id="countdown">10</div>
+    <div id="message"></div>
+    <div class="button-container">
+        <button id="startButton">Mulai</button>
+        <button id="stopButton" disabled>Berhenti</button>
+    </div>
+</div>
+
+<script>
+    let countdownInterval;
+    let isCounting = false;
+    let currentNumber = 10;
+
+    const startButton = document.getElementById('startButton');
+    const stopButton = document.getElementById('stopButton');
+    const countdownDisplay = document.getElementById('countdown');
+    const messageDisplay = document.getElementById('message');
+
+    startButton.addEventListener('click', () => {
+        if (!isCounting) {
+            startCountdown();
+            startButton.disabled = true;
+            stopButton.disabled = false;
+            isCounting = true;
+        }
+    });
+
+    stopButton.addEventListener('click', () => {
+        if (isCounting) {
+            clearInterval(countdownInterval);
+            startButton.disabled = false;
+            stopButton.disabled = true;
+            isCounting = false;
+        }
+    });
+
+    function startCountdown() {
+        countdownDisplay.textContent = currentNumber;
+        messageDisplay.textContent = '';
+        
+        countdownInterval = setInterval(() => {
+            currentNumber--;
+            if (currentNumber < 1) {
+                clearInterval(countdownInterval);
+                countdownDisplay.textContent = '';
+                messageDisplay.textContent = 'Waktu Habis';
+                startButton.disabled = false;
+                stopButton.disabled = true;
+                isCounting = false;
+                currentNumber = 10; // Reset angka untuk hitung mundur berikutnya
+            } else {
+                countdownDisplay.textContent = currentNumber;
+            }
+        }, 1000); // Hitung mundur setiap 1 detik
+    }
+</script>
+
+</body>
+</html>

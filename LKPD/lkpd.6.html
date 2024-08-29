@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cari Data Berdasarkan Tanggal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="date"] {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 200px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Cari Data Berdasarkan Tanggal</h1>
+    <form id="searchForm">
+        <input type="date" id="searchInput">
+        <button type="submit">Cari</button>
+    </form> 
+    <div id="result"></div>
+</div>
+
+<script>
+    const form = document.getElementById('searchForm');
+    const searchInput = document.getElementById('searchInput');
+    const resultDisplay = document.getElementById('result');
+
+    form.addEventListener('submit', (event) => {
+        event.preventDefault(); 
+
+        const inputDate = searchInput.value;
+        if (inputDate) {
+            
+            resultDisplay.textContent = `Data untuk tanggal: ${inputDate}`;
+        } else {
+            resultDisplay.textContent = 'Tidak mencari data.';
+        }
+
+        searchInput.value = ''; 
+    });
+</script>
+
+</body>
+</html>

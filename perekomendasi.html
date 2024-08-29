@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modikasi Objek</title>
+    <style>
+        .button {
+            width: 20%;
+            display: flex;
+            justify-content: center;
+            margin: 20px;
+        }
+        button{
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <form>
+            <p>Ada Perekomendasi?</p>
+            <select class="select" name="opsi" id="opsi" onchange="changeInput(this)">
+                <option disabled hidden selected>Choose</option>
+                <option value="ada">Ada</option>
+                <option value="tdk">Tidak</option>
+            </select>
+        </form>
+    </div>
+    <div class="wrapper" id="wrapper">
+        <div class="input">
+            <form>
+                <div class="input_nama">
+                    <label for="nama" id="nama">Nama Lengkap Perekomendasi?</label>
+                    <br>
+                    <input type="text" id="nama">
+                </div>
+                <div class="input_kategori">
+                    <p>Kategori Perekomendasi</p>
+                    <select name="kategori" id="kategori" onchange="changeKategori(this)">
+                        <option disabled hidden selected>Choose</option>
+                        <option value="pekerja">Pekerja BRI</option>
+                        <option value="purna">Purnabakti</option>
+                    </select>
+                </div>
+                <div class="input_id">
+                    <label for="id">Nomer ID pegawai/KTA/PN/MP</label>
+                    <br>
+                    <input type="text" id="id">
+                </div>
+                <div class="input_jabatan" id="input_jabatan">
+                    <label for="jabatan">Jabatan Perekomendasi?</label>
+                    <br>
+                    <input type="text" id="jabatan">
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="button">
+        <button>Kirim</button>
+    </div>
+    <script>
+        function changeInput (e){
+            let opsi = document.getElementById("opsi");
+            let wrapper = document.getElementById("wrapper");
+            if (e.value == "tdk") {
+                wrapper.style.display = "none";
+            } else {
+                wrapper.style.display = "block";
+            }
+        }
+        function changeKategori (e) {
+            let kategori = document.getElementById("kategori")
+            let jabatan = document.getElementById("input_jabatan");
+            if (e.value == "purna") {
+                jabatan.style.display = "none";
+            } else {
+                jabatan.style.display = "block";
+            }
+        }
+    </script>
+</body>
+
+</html>
